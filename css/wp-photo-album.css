@@ -1,0 +1,130 @@
+.wp-photo-album{
+    padding: 0 0 5%;
+    text-align: center;
+}
+
+.album-nav{
+    padding:5px;
+    font-size:18px;
+}
+
+.album-preview{
+    margin-bottom: 5px;
+    height:235px;
+}
+
+.photo-preview{
+    text-align: center;
+    display:inline-block;
+    vertical-align: top;
+    margin-bottom: 5px;
+    height:200px;
+}
+
+.album-preview .photo-thumb, .photo-preview .photo-thumb{
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    padding: 0 !important;
+    max-height: 180px;
+    overflow: hidden;
+}
+
+.album-preview img{
+    max-width: 100%;
+}
+
+
+
+.wp-photo-album-bg-layer{
+    position: fixed;
+    background-color:RGBa(0,0,0,0.8);
+    z-index: 9998;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    display:none;
+}
+
+.popup-photo{
+    display:none;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 20px;
+}
+
+.photo-close{
+    float:right;
+    margin-right:10px;
+    color: #2B587A;
+    cursor:pointer;
+}
+
+.photo-close:hover{
+    text-decoration: underline;
+}
+
+.album-item-separate .photo-close{
+    display:none;
+}
+
+.wp-photo-album-item{
+    max-width:80%;
+    margin:2% auto;
+    text-align:center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    padding: 2%;
+}
+
+.wp-photo-album-item .photo-item{
+    max-width:100%;
+    padding:4px;
+    transition: border 0.2s ease-in-out 0s;
+    cursor: pointer;
+}
+
+.album-h1{
+    text-align: center;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.centered{
+    margin-left:auto;
+    margin-right: auto;
+}
+
+#main_content{
+    display:block;
+}
+
+
+#next-photo, #previous-photo{
+    display:none
+}
+
+
+.show-more-photos{
+    display:block;
+    width:100%;
+}
+
+
+@media (max-width:768px){
+    .wp-photo-album-item{
+        max-width: 98%;
+    }
+
+    .photo-preview{
+        height:160px;
+    }
+
+    .photo-preview .photo-thumb{
+        max-height:150px;
+    }
+}

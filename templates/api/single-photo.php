@@ -1,34 +1,26 @@
 <?php
 /*
- *  Template for single photo
+ *  Template for API photo
  */
 
+
 $photo = WordpressPhotoAlbum::getPhoto($params['photo_id']);
+if($photo):
 
+    status_header(200);
+    ?>
 
-if(!$photo){
-    WordpressPhotoAlbum::redirectTo404();
-}
-
-status_header(200);
-add_filter('wp_title', function() use($photo){
-    return $photo->post_title;
-});
-
-get_header();
-?>
-<div class="container">
-    <h1 class="album-h1"><?=$photo->post_title?></h1>
-    <div class="wp-photo-album-item album-item-separate">
-        <?=WordpressPhotoAlbum::__t('singular_name') .' '. $photo->additionalInfo->position . ' ' . WordpressPhotoAlbum::__t('of') . ' ' .$photo->albumInfo->count?><br>
+    <?=WordpressPhotoAlbum::__t('singular_name') .' '. $photo->additionalInfo->position . ' ' . WordpressPhotoAlbum::__t('of') . ' ' .$photo->albumInfo->count?>
+    <span class="photo-close" title="<?=WordpressPhotoAlbum::__t('close') .' ' .WordpressPhotoAlbum::__t('photo')?>"><?=WordpressPhotoAlbum::__t('close')?></span>
+    <br>
         <img
             class="photo-item"
             src="<?=$photo->photoSource?>"
             alt="<?=$photo->post_title?>"
             title="<?=$photo->post_title?>"
-        >
+            >
         <br>
-        <?=$photo->post_excerpt?>
+    <?=$photo->post_excerpt?>
         <br>
         <a href="<?=$photo->additionalInfo->prev?>"
            id="previous-photo"
@@ -42,7 +34,5 @@ get_header();
         </a>
         <br>
 
-        <?php comments_template(); ?>
-    </div>
-</div>
-<?php get_footer(); ?>
+    <?php comments_template(); ?>
+<?php endif; ?>

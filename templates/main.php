@@ -1,7 +1,8 @@
 <?php
 
 
-$albums = WordpressPhotoAlbum::getAlbums();
+$albums = WordpressPhotoAlbum::getAlbums(0);
+status_header(200);
 
 add_filter('wp_title', function(){
     return WordpressPhotoAlbum::__t('menu_name');
@@ -9,16 +10,25 @@ add_filter('wp_title', function(){
 
 
 get_header();
+
+
 ?>
 
+<div class="container">
+    <h1 class="album-h1"><?php wp_title();?></h1>
+    <div class="row wp-photo-album">
+        <?php foreach ($albums as $album): ?>
+            <div class="col-md-3 col-sm-4 col-xs-6 album-preview">
+                <div class="thumbnail photo-thumb">
+                    <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>">
+                        <img src="<?=$album->lastPhoto?>" class="centered" title="<?=$album->name?>">
 
-<h1><?php wp_title();?></h1>
-<ul>
-    <?php
-    foreach ($albums as $album) {
-        echo '<li>' . '<a href="' . esc_attr(get_term_link($album, WordpressPhotoAlbum::TAXONOMY)) . '" title="' . sprintf( __( "View all photos in %s" ), $album->name ) . '" ' . '>' . $album->name.'</a></li>';
-    }
-    ?>
-</ul>
+                    </a>
+                </div>
+                <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>"><?=$album->name?></a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
 <?php get_footer(); ?>
