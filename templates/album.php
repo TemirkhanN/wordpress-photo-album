@@ -52,7 +52,7 @@ $photos = WordpressPhotoAlbum::getPhotos($album->slug, $page);
         </div>
     <?php elseif($photos->have_posts()): ?>
         <div class="row wp-photo-album">
-            <h2><?=WordpressPhotoAlbum::__t('name')?></h2><br>
+            <h1 class="album-h1"><?=$album->name?></h1><br>
             <?php while($photos->have_posts()): $photos->the_post(); ?>
                 <div class="col-md-3 col-sm-4 col-xs-6 photo-preview">
                     <div class="thumbnail photo-thumb">

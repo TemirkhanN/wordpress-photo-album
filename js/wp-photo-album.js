@@ -16,7 +16,6 @@ $(function(){
         this.cssPhotoPopupSelector = '.popup-photo'; // photo mount's parent div selector
         this.cssPhotoPreviewImgSelector = '.photo-preview .photo-thumb img'; // photo preview img selector
         this.cssPhotoCloseSelector = '.photo-close';
-        this.photoMountMaxWidth = 654; //photo mount max width in pixels
         this.historyNavigation = {"albumUrl": null, "historyMoves": 0}; // for navigation control
         var _this = this; // for closure
         var photoOpened = false;
@@ -145,14 +144,14 @@ $(function(){
 
         //Checks if photo is opened in tab(direct url)
         this.isPhotoRealUrl = function(url){
-            var photoUrlPattern = (document.location.origin + this.photoUrlRegExp()).replace(new RegExp(/\//, 'g'), '\\/');
+            var photoUrlPattern = (document.location.origin + this.photoUrlRegExp()).replace(/\//g, '\\/');
             return url.match(new RegExp(""+photoUrlPattern+"")) !== null;
         };
 
 
         this.parseAlbumSlug = function(url){
             var albumSlugRegExp = this.albumRealUrl.replace(/\{albumSlug}/, '(.{3,})?');
-            albumSlugRegExp = albumSlugRegExp.replace(new RegExp(/\//, 'g'), '\\/');
+            albumSlugRegExp = albumSlugRegExp.replace(/\//g, '\\/');
             var params = url.match(new RegExp(""+albumSlugRegExp+""));
             return params!==null ? params[1] : false;
         };
@@ -210,10 +209,7 @@ $(function(){
                 $(_this.cssBgLayerSelector).show();
                 $(_this.cssPhotoPopupSelector).show();
                 $(_this.cssPhotoMountSelector).css({
-                    'maxWidth': _this.photoMountMaxWidth + 'px',
-                    'position': 'relative',
-                    'z-index': '99999',
-                    'top': 10+window.pageYOffset+'px',
+                    'top': window.pageYOffset+'px',
                 });
 
                 $(_this.cssPhotoMountSelector).html(photoContent);
@@ -224,7 +220,7 @@ $(function(){
 
                     if(window.pageYOffset<lastScreenOffset){
                         lastScreenOffset = window.pageYOffset;
-                        $(_this.cssPhotoMountSelector).css({'top': 10+window.pageYOffset+'px'});
+                        $(_this.cssPhotoMountSelector).css({'top': window.pageYOffset+'px'});
                     }
                 };
             }
