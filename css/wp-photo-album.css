@@ -134,6 +134,10 @@
     display:none;
 }
 
+.wp-photo-album-item #comment{
+    max-width:100%;
+}
+
 
 .wp-photo-album-item #respond #submit{
     padding: 6px 16px 7px;
@@ -192,11 +196,12 @@
         max-width: 98%;
     }
 
-    .photo-preview{
-        height:160px;
-    }
 
-    .photo-preview .photo-thumb{
-        max-height:150px;
+    .album-preview, .photo-preview,
+    .photo-preview .photo-thumb,
+    .album-preview .photo-thumb
+    {
+        height:auto;
+        max-height: none;
     }
 }

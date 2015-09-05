@@ -1,7 +1,7 @@
 <?php
 
 
-$albums = WordpressPhotoAlbum::getAlbums(0);
+$albums = WordpressPhotoAlbum::getAlbums(0, true);
 status_header(200);
 
 add_filter('wp_title', function(){
@@ -18,7 +18,7 @@ get_header();
     <h1 class="album-h1"><?php wp_title();?></h1>
     <div class="row wp-photo-album">
         <?php foreach ($albums as $album): ?>
-            <div class="col-md-3 col-sm-4 col-xs-6 album-preview">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 album-preview">
                 <div class="thumbnail photo-thumb">
                     <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>">
                         <img src="<?=$album->lastPhoto?>" class="centered" title="<?=$album->name?>">

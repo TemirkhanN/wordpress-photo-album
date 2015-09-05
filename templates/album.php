@@ -17,7 +17,7 @@ add_filter('wp_title', function() use($album){
 $page = !empty($params['page'])  ? $params['page'] : 1;
 
 
-$subAlbums = WordpressPhotoAlbum::getAlbums($album->term_id);
+$subAlbums = WordpressPhotoAlbum::getAlbums($album->term_id, true);
 $photos = WordpressPhotoAlbum::getPhotos($album->slug, $page);
 
 
@@ -34,7 +34,7 @@ $photos = WordpressPhotoAlbum::getPhotos($album->slug, $page);
         <h2 class="album-h1"><?=WordpressPhotoAlbum::__t('albums')?></h2>
         <div class="row wp-photo-album">
             <?php foreach ($subAlbums as $album): ?>
-                <div class="col-md-3 col-sm-4 col-xs-6 album-preview">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 album-preview">
 
                     <div class="thumbnail photo-thumb">
                         <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>">
@@ -54,7 +54,7 @@ $photos = WordpressPhotoAlbum::getPhotos($album->slug, $page);
         <div class="row wp-photo-album">
             <h1 class="album-h1"><?=$album->name?></h1><br>
             <?php while($photos->have_posts()): $photos->the_post(); ?>
-                <div class="col-md-3 col-sm-4 col-xs-6 photo-preview">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 photo-preview">
                     <div class="thumbnail photo-thumb">
                         <?php if(has_post_thumbnail()): ?>
                             <a href="<?=WordpressPhotoAlbum::photoUrl(get_the_ID())?>" title="<?=get_the_title()?>">

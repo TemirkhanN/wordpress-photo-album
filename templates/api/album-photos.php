@@ -21,7 +21,7 @@ if($photos->have_posts()){
 
 <?php if($photos->have_posts()):  ?>
     <?php while($photos->have_posts()): $photos->the_post(); ?>
-        <div class="col-md-3 col-sm-4 col-xs-6 photo-preview">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 photo-preview">
             <div class="thumbnail photo-thumb">
                 <?php if(has_post_thumbnail()): ?>
                     <a href="<?=WordpressPhotoAlbum::photoUrl(get_the_ID())?>" title="<?=get_the_title()?>">
