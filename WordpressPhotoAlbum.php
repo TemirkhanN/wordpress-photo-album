@@ -68,7 +68,8 @@ class WordpressPhotoAlbum
 
         self::registerPhotoPostType();
         self::registerUrlRewrite();
-        self::registerPostFilter();
+        self::registerPhotoUrl();
+        self::registerFilterByAlbum();
     }
 
 
@@ -325,7 +326,7 @@ class WordpressPhotoAlbum
     /**
      * Shows sorting by album(term) filter on photos(posts) list (admin page)
      */
-    private static function registerPostFilter()
+    private static function registerFilterByAlbum()
     {
         add_action( 'restrict_manage_posts', function () {
             global $typenow;
@@ -341,6 +342,22 @@ class WordpressPhotoAlbum
             }
         });
 
+    }
+
+
+    /**
+     * Changes links to photo items to their real value defined in rules
+     * Useful for links to posts from admin panel since it tries to show basic permalink that lead nowhere
+     */
+    private static function registerPhotoUrl()
+    {
+        add_filter('post_type_link', function($url, $post){
+
+            if($post->post_type === self::POST_TYPE){
+                $url = self::photoUrl($post->ID);
+            }
+            return $url;
+        }, 10, 2);
     }
 
 
