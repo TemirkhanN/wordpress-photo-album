@@ -62,6 +62,34 @@ Because photos shall
 
 ###== Screenshots ==
 
-Coming soon
+
+####Wp-admin albums list
+![photoalbum-root](http://paranoia.today/gitpub/img/admin-albums-list.png)
 
 
+####Adding new photo
+![Adding-new-photo](http://paranoia.today/gitpub/img/photo-add.png)
+
+
+####Album root page
+![Album-root-page](http://paranoia.today/gitpub/img/photoalbum-root.png)
+
+
+####Non-root album with child albums
+![Non-root-album-with-child-albums](http://paranoia.today/gitpub/img/album-with-child-albums.png)
+
+
+####Photos in album
+![photoalbum-root](http://paranoia.today/gitpub/img/photos-list.png)
+
+
+####Popup photo(full page screenshot)
+![popup-photo-full](http://paranoia.today/gitpub/img/photo-popup-full-page.png)
+
+
+####Popup photo(real size)
+![popup-photo-real](http://paranoia.today/gitpub/img/photo-popup-real.png)
+
+
+####Direct link photo
+![photo-direct-link](http://paranoia.today/gitpub/img/photo-separate-url.png)
