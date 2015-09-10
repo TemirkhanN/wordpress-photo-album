@@ -8,6 +8,7 @@ class WordpressPhotoAlbum
     const POST_TYPE = 'wp-photo';
     const TAXONOMY = 'photo_albums';
     const TAXONOMY_SLUG = 'album';
+    const LOCALE = 'en_EN';
 
     public static $urlRules = [];
     public static $hideEmptyAlbums = false;
@@ -302,7 +303,7 @@ class WordpressPhotoAlbum
     /**
      * Simple localization that searches passed word in localization dir
      *
-     * Localization file is selected based on get_locale() value
+     * Localization file is selected based on LOCALE const
      *
      * @param $word
      * @param bool|false $lowercase
@@ -311,7 +312,7 @@ class WordpressPhotoAlbum
     public static function __t($word, $lowercase = false)
     {
         if(self::$localization === null ){
-            $lcpath = __DIR__.'/localization/' . get_locale() .'.php';
+            $lcpath = __DIR__.'/localization/' . self::LOCALE .'.php';
             self::$localization = file_exists($lcpath) ? require $lcpath : array();
         }
 

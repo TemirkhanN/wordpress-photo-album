@@ -1,4 +1,4 @@
-$(function(){
+jQuery(function(){
 
     /**
      * @constructor
@@ -6,10 +6,11 @@ $(function(){
     var PhotoAlbumWP = function(){
 
         this.apiUrl = '/PHOTO_ALBUM_API/';
+        this.rootUrl = '/album/';
         this.apiAlbumUrl = this.apiUrl + 'album-{albumSlug}/page-{pageNumber}/';
-        this.albumRealUrl = '/album/{albumSlug}/';
+        this.albumRealUrl = this.rootUrl + '{albumSlug}/';
         this.apiPhotoUrl = this.apiUrl + 'photo-{photoId}/';
-        this.photoRealUrl = '/album/photo-{photoId}/';
+        this.photoRealUrl = this.rootUrl + 'photo-{photoId}/';
         this.cssAlbumShowMoreSelector = '.show-more-photos';
         this.cssBgLayerSelector = '.wp-photo-album-bg-layer'; //background darkened layer selector
         this.cssPhotoMountSelector = '.wp-photo-album-item'; // photo mount selector
@@ -33,7 +34,7 @@ $(function(){
             if(id>0) {
                 var content = null;
 
-                $.ajax({
+                jQuery.ajax({
                     url: _this.apiPhotoUrl.replace(/\{photoId\}/, id),
                     type: 'get',
                     dataType: 'html',
@@ -85,7 +86,7 @@ $(function(){
             var content =  null;
             var url = this.apiAlbumUrl.replace(/\{albumSlug}/, albumSlug).replace(/\{pageNumber}/, page);
 
-            $.ajax({
+            jQuery.ajax({
                 url: url,
                 type: "GET",
                 dataType: "html",
@@ -105,9 +106,9 @@ $(function(){
         // Close photo and set location href to actual
         this.closePhoto = function(){
             photoOpened = false;
-            $(_this.cssBgLayerSelector).hide();
-            $(_this.cssPhotoMountSelector).html('');
-            $(_this.cssPhotoPopupSelector).hide();
+            jQuery(_this.cssBgLayerSelector).hide();
+            jQuery(_this.cssPhotoMountSelector).html('');
+            jQuery(_this.cssPhotoPopupSelector).hide();
 
             if(_this.historyNavigation.albumUrl !== null){
                 window.history.go(-(_this.historyNavigation.historyMoves));
@@ -129,7 +130,7 @@ $(function(){
 
             if(_this.isPhotoRealUrl(window.location.href)){
                 var photoId = window.location.href.match(this.photoUrlRegExp())[1];
-                $(_this.cssPhotoMountSelector).html(this.showPhoto(photoId, true));
+                jQuery(_this.cssPhotoMountSelector).html(this.showPhoto(photoId, true));
             }
         };
 
@@ -158,32 +159,32 @@ $(function(){
 
 
 
-        $(this.cssAlbumShowMoreSelector).on('click', function(event){
+        jQuery(this.cssAlbumShowMoreSelector).on('click', function(event){
             var album = _this.parseAlbumSlug(window.location.pathname);
-            var page = parseInt($(this).attr('data-page'));
+            var page = parseInt(jQuery(this).attr('data-page'));
             var photos = null;
             if(album && page>0){
                 page++;
                 photos = _this.showAlbum(album, page);
                 if(photos){
-                    $(this).attr('data-page', page);
-                    $(this).before(photos);
+                    jQuery(this).attr('data-page', page);
+                    jQuery(this).before(photos);
                 } else{
-                    $(this).hide();
+                    jQuery(this).hide();
                 }
             } else{
-                $(this).hide();
+                jQuery(this).hide();
             }
         });
 
         //On photo mount click shows previous or next photo based on
         // click position(closer to left or right mount border
-        $(document).on('click', _this.cssPhotoMountSelector + " .photo-item", function(event){
+        jQuery(document).on('click', _this.cssPhotoMountSelector + " .photo-item", function(event){
 
-            var container = $(_this.cssPhotoMountSelector);
-            var posX = event.clientX - $(_this.cssPhotoMountSelector).offset().left;
-            var nextPhotoId = $("#next-photo").attr('data-target-id');
-            var prevPhotoId = $("#previous-photo").attr('data-target-id');
+            var container = jQuery(_this.cssPhotoMountSelector);
+            var posX = event.clientX - jQuery(_this.cssPhotoMountSelector).offset().left;
+            var nextPhotoId = jQuery("#next-photo").attr('data-target-id');
+            var prevPhotoId = jQuery("#previous-photo").attr('data-target-id');
             var photo = null;
 
             if(container.width()/2 > posX && prevPhotoId > 0){
@@ -194,25 +195,25 @@ $(function(){
 
 
             if(photo !== null){
-                $(_this.cssPhotoMountSelector).html(photo);
+                jQuery(_this.cssPhotoMountSelector).html(photo);
             }
 
         });
 
 
         //On photo preview click shows photo
-        $('div').on('click', this.cssPhotoPreviewImgSelector, function(event){
-            var photoId = $(this).attr('data-target-id');
+        jQuery('div').on('click', this.cssPhotoPreviewImgSelector, function(event){
+            var photoId = jQuery(this).attr('data-target-id');
             var photoContent;
             event.preventDefault();
             if(typeof photoId !='undefined' && (photoContent = _this.showPhoto(photoId)) !== null) {
-                $(_this.cssBgLayerSelector).show();
-                $(_this.cssPhotoPopupSelector).show();
-                $(_this.cssPhotoMountSelector).css({
+                jQuery(_this.cssBgLayerSelector).show();
+                jQuery(_this.cssPhotoPopupSelector).show();
+                jQuery(_this.cssPhotoMountSelector).css({
                     'top': window.pageYOffset+'px',
                 });
 
-                $(_this.cssPhotoMountSelector).html(photoContent);
+                jQuery(_this.cssPhotoMountSelector).html(photoContent);
 
                 var lastScreenOffset = window.pageYOffset;
 
@@ -220,7 +221,7 @@ $(function(){
 
                     if(window.pageYOffset<lastScreenOffset){
                         lastScreenOffset = window.pageYOffset;
-                        $(_this.cssPhotoMountSelector).css({'top': window.pageYOffset+'px'});
+                        jQuery(_this.cssPhotoMountSelector).css({'top': window.pageYOffset+'px'});
                     }
                 };
             }
@@ -230,14 +231,14 @@ $(function(){
 
 
         //On dark background click hide photo
-        $(this.cssBgLayerSelector).on('click', function(event){
+        jQuery(this.cssBgLayerSelector).on('click', function(event){
             _this.closePhoto();
         });
 
 
 
         //On close button click hide photo
-        $(document).on('click',this.cssPhotoCloseSelector, function(event){
+        jQuery(document).on('click',this.cssPhotoCloseSelector, function(event){
             event.stopPropagation();
             _this.closePhoto();
         });
