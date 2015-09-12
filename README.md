@@ -25,7 +25,7 @@ Url rewriting system included, so it is manageable by settings in class.
 
     Rules are declared in class constrcutor.
 
-L18N system included - translations kept in plugin_dir().'/locatization/'.get_locale().'.php'
+L18N system included - translations kept in plugin_dir().'/locatization/' . WordpressPhotoAlbum::LOCALE . '.php'
 
     Can be called by WordpressPhotoAlbum::__t('some_phrase')
 
