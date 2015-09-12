@@ -24,9 +24,9 @@ if($photos->have_posts()){
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 photo-preview">
             <div class="thumbnail photo-thumb">
                 <?php if(has_post_thumbnail()): ?>
-                    <a href="<?=WordpressPhotoAlbum::photoUrl(get_the_ID())?>" title="<?=get_the_title()?>">
-                        <img data-target-id="<?=get_the_ID()?>" src="<?=wp_get_attachment_image_src(get_post_thumbnail_id($lastPhotoData->ID), 'medium')[0]?>"
-                             alt="<?=get_the_title()?>"
+                    <a href="<?php echo WordpressPhotoAlbum::photoUrl(get_the_ID()); ?>" title="<?php the_title();?>">
+                        <img data-target-id="<?php the_ID();?>" src="<?php echo WordpressPhotoAlbum::getAttachmentUrl(get_the_ID());?>"
+                             alt="<?php the_title()?>"
                             >
                     </a>
                 <?php endif; ?>

@@ -20,12 +20,12 @@ get_header();
         <?php foreach ($albums as $album): ?>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 album-preview">
                 <div class="thumbnail photo-thumb">
-                    <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>">
-                        <img src="<?=$album->lastPhoto?>" class="centered" title="<?=$album->name?>">
+                    <a href="<?php echo WordpressPhotoAlbum::albumUrl($album->slug);?>">
+                        <img src="<?php echo $album->lastPhoto;?>" class="centered" title="<?php echo $album->name;?>">
 
                     </a>
                 </div>
-                <a href="<?=WordpressPhotoAlbum::albumUrl($album->slug)?>"><?=$album->name?></a>
+                <a href="<?php echo WordpressPhotoAlbum::albumUrl($album->slug);?>"><?php echo $album->name;?></a>
             </div>
         <?php endforeach; ?>
     </div>

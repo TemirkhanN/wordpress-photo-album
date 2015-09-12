@@ -300,6 +300,16 @@ class WordpressPhotoAlbum
     }
 
 
+
+
+
+    public static function getAttachmentUrl($postId, $size = 'medium')
+    {
+        $attachments = wp_get_attachment_image_src(get_post_thumbnail_id($postId), $size);
+        return $attachments ? $attachments[0] : '';
+    }
+
+
     /**
      * Simple localization that searches passed word in localization dir
      *
