@@ -50,8 +50,7 @@ L18N system included - translations kept in plugin_dir().'/locatization/' . Word
 
 
     /js/wp-photo-album.js
-    * this.albumRealUrl = '/album/{albumSlug}/';
-    * this.photoRealUrl = '/album/photo-{photoId}/';
+    * this.rootUrl = '/album/';
 
 #####= Why every photo shall be added separately? =
 
