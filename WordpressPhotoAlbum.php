@@ -355,7 +355,6 @@ class WordpressPhotoAlbum
 
     }
 
-
     /**
      * Changes links to photo items to their real value defined in rules
      * Useful for links to posts from admin panel since it tries to show basic permalink that lead nowhere
@@ -389,8 +388,9 @@ class WordpressPhotoAlbum
      */
     private static function registerUrlRewrite()
     {
+        $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         foreach(self::$urlRules as $rewrite){
-            if(preg_match('#'.$rewrite['rule'].'#is', $_SERVER['REQUEST_URI'], $info)){
+            if(preg_match('#'.$rewrite['rule'].'#is', $url, $info)){
                 array_shift($info);
                 $params = [];
                 if(!empty($info)){

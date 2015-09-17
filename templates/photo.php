@@ -16,6 +16,8 @@ add_filter('wp_title', function() use($photo){
 });
 
 get_header();
+
+$GLOBALS['post'] = $photo;
 ?>
 <div class="container">
     <h1 class="album-h1"><?php echo $photo->post_title;?></h1>
