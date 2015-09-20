@@ -1,6 +1,6 @@
 === vk photo album ===
 Contributors: temirkhan
-Donate link: 
+Donate link: http://paranoia.today/en/
 Tags: vk, photos, gallery, album, images
 Requires at least: 3.5
 Tested up to: 4.2.4
